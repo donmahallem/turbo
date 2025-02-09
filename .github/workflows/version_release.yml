@@ -3,7 +3,7 @@ on:
     workflow_run:
         workflows: [Test]
         types: [completed]
-        branches: [master]
+        branches: [main]
 env:
     TEST_NODE_VERSION: 22
 jobs:
