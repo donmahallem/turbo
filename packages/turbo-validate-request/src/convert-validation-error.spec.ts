@@ -1,6 +1,6 @@
-/*
+/**
  * Package @donmahallem/turbo-validate-request
- * Source https://donmahallem.github.io/js-libs/
+ * Source https://donmahallem.github.io/turbo/
  */
 
 import { RequestError } from '@donmahallem/turbo';
