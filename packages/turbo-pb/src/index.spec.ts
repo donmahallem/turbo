@@ -1,5 +1,6 @@
-/*!
- * Source https://github.com/donmahallem/js-libs Package: turbo-pb
+/**
+ * Package @donmahallem/turbo-pb
+ * Source https://donmahallem.github.io/turbo/
  */
 
 import { expect } from 'chai';

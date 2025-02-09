@@ -1,4 +1,4 @@
-/*
+/**
  * Package @donmahallem/turbo
  * Source https://github.com/donmahallem/turbo
  */
