@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "ESNext",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "declaration": true,
+        "moduleResolution": "bundler",
+        "strictNullChecks": true,
+        "noUnusedLocals": true,
+        "lib": [
+            "ES2022"
+        ]
+    },
+    "typeAcquisition": {
+        "enable": true
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "baseUrl": "./src"
+}

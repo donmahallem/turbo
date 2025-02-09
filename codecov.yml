@@ -1,0 +1,43 @@
+comment:
+  layout: "reach, diff, flags, files"
+coverage:
+  status:
+    project:
+      turbo:
+        paths:
+          - packages/turbo/src/**/*
+      turbo-rxjs:
+        paths:
+          - packages/turbo-rxjs/src/**/*
+      turbo-pb:
+        paths:
+          - packages/turbo-pb/src/**/*
+      gulp-ncc:
+        paths:
+          - packages/gulp-ncc/src/**/*
+      label-pr:
+        paths:
+          - packages/label-pr/src/**/*
+      label-gh:
+        paths:
+          - packages/label-gh/src/**/*
+      turbo-validate-request:
+        paths:
+          - packages/turbo-validate-request/src/**/*
+      turbo-validate-request:
+        paths:
+          - packages/turbo-validate-request/src/**/*
+      ico:
+        paths:
+          - packages/ico/src/**/*
+      lerna2codecov:
+        paths:
+          - packages/lerna2codecov/src/**/*
+flags:
+  unit:
+    paths:
+      - packages/*/src
+    carryforward: false
+ignore:
+  - "packages/*/node_modules/**"
+  - "**/*.json"  # ignore files submodules

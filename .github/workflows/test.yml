@@ -1,0 +1,165 @@
+name: Test
+on: [push, pull_request]
+env:
+    TEST_NPM_VERSION: 10
+jobs:
+    build_suite:
+        runs-on: ${{ matrix.os }}
+        name: Build - ${{ matrix.os }} - Node ${{ matrix.node }}
+        timeout-minutes: 30
+        strategy:
+            max-parallel: 4
+            matrix:
+                node: [20, 22]
+                os: [ubuntu-latest] #, windows-latest]
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4.2.2
+              with:
+                  fetch-depth: 200
+            - name: Setup Node
+              uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node }}
+                  cache: 'npm'
+            - name: Install Deps
+              run: |
+                  npm install -g npm@${{env.TEST_NPM_VERSION}}
+                  npm ci
+            - name: Run Build
+              run: npx lerna run build
+            - name: Archive production artifacts
+              uses: actions/upload-artifact@v4.6.0
+              with:
+                  name: build-${{matrix.os}}-${{matrix.node}}
+                  path: |
+                      packages/*/dist
+    test_suite:
+        needs: build_suite
+        runs-on: ${{ matrix.os }}
+        name: Test - ${{ matrix.os }} - Node ${{ matrix.node }}
+        timeout-minutes: 30
+        strategy:
+            max-parallel: 4
+            matrix:
+                node: [20, 22]
+                os: [ubuntu-latest] #, windows-latest]
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4.2.2
+              with:
+                  fetch-depth: 200
+            - name: Setup Node
+              uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node }}
+                  cache: 'npm'
+            - name: Install Deps
+              run: |
+                  npm install -g npm@${{env.TEST_NPM_VERSION}}
+                  npm ci
+            - name: Download Build artifacts
+              uses: actions/download-artifact@v4.1.8
+              with:
+                  name: build-${{matrix.os}}-${{matrix.node}}
+                  path: ./packages
+            - name: Run Test
+              run: npx lerna run test:coverage
+            - name: Retrieve Codecov Flag Name
+              id: 'flagname'
+              run: |
+                  FLAGNAME=$(echo "${{ matrix.package.name }}" | sed -n -e 's/^.*\///p')
+                  echo "::set-output name=flagname::${FLAGNAME}"
+            - name: Upload coverage to Codecov Monorepo
+              uses: codecov/codecov-action@v5.3.1
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
+                  flags: unit #${{ steps.flagname.outputs.flagname }}
+                  directory: ${{ matrix.package.location }}
+                  name: Test
+                  fail_ci_if_error: false
+                  verbose: false
+    lint_suite:
+        needs: build_suite
+        runs-on: ${{ matrix.os }}
+        name: Lint - ${{ matrix.os }} - Node ${{ matrix.node }}
+        timeout-minutes: 30
+        strategy:
+            max-parallel: 4
+            matrix:
+                node: [22]
+                os: [ubuntu-latest] #, windows-latest]
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4.2.2
+              with:
+                  fetch-depth: 200
+            - name: Setup Node
+              uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node }}
+                  cache: 'npm'
+            - name: Install Deps
+              run: |
+                  npm install -g npm@${{env.TEST_NPM_VERSION}}
+                  npm ci
+            - name: Download Build artifacts
+              uses: actions/download-artifact@v4.1.8
+              with:
+                  name: build-${{matrix.os}}-${{matrix.node}}
+                  path: ./packages
+            - name: Lint ALL Packages
+              run: npx lerna run lint
+            - name: Lint ALL Packages
+              run: npx lerna run lint
+            #- name: Lint ALL Packages
+            #  run: npx lerna run prettier
+    docs_suite:
+        needs: build_suite
+        runs-on: ${{ matrix.os }}
+        name: Docs - ${{ matrix.os }} - Node ${{ matrix.node }}
+        # only run docs on pull_requests and non feature branches
+        if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev' }}
+        timeout-minutes: 30
+        strategy:
+            max-parallel: 4
+            matrix:
+                node: [22]
+                os: [ubuntu-latest] #, windows-latest]
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4.2.2
+              with:
+                  fetch-depth: 200
+            - name: Setup Node
+              uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: ${{ matrix.node }}
+                  cache: 'npm'
+            - name: Install Deps
+              run: |
+                  npm install -g npm@${{env.TEST_NPM_VERSION}}
+                  npm ci
+            - name: Download Build artifacts
+              uses: actions/download-artifact@v4.1.8
+              with:
+                  name: build-${{matrix.os}}-${{matrix.node}}
+                  path: ./packages
+            - name: Run Docs
+              run: npx lerna run docs
+              # run: npm run docs
+            - name: Build READMEs
+              run: npm run build:readme
+    status-check:
+      if: always()
+      name: Finish Test
+      needs:
+        - build_suite
+        - lint_suite
+        - test_suite
+        - docs_suite
+      runs-on: ubuntu-latest
+      steps:
+        - uses: re-actors/alls-green@v1.2.2
+          with:
+            jobs: ${{ toJSON(needs) }}
