@@ -1,21 +1,21 @@
 name: Workspace Package Labeler
 on:
-  pull_request_target:
-    types: [opened, edited, synchronize]
+    pull_request_target:
+        types: [opened, edited, synchronize]
 
 jobs:
-  label:
-    name: Label Package Pull Requests
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Checkout code"
-        uses: actions/checkout@v4.2.2
-      - name: Label the PR
-        uses: donmahallem/lerna-label@v1.0.0
-        with:
-          github_secret: "${{ secrets.GITHUB_TOKEN }}"
-          prefix: "pkg"
-      - name: Label PRs
-        uses: actions/labeler@v5
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+    label:
+        name: Label Package Pull Requests
+        runs-on: ubuntu-latest
+        steps:
+            - name: 'Checkout code'
+              uses: actions/checkout@v4.2.2
+            - name: Label the PR
+              uses: donmahallem/lerna-label@v1.1.0
+              with:
+                  github_secret: '${{ secrets.GITHUB_TOKEN }}'
+                  prefix: 'pkg'
+            - name: Label PRs
+              uses: actions/labeler@v5
+              with:
+                  repo-token: '${{ secrets.GITHUB_TOKEN }}'
