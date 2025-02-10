@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/donmahallem/turbo/compare/v3.1.1...v3.2.0) (2025-02-10)
+
+### Features
+
+- use esm exports ([#14](https://github.com/donmahallem/turbo/issues/14)) ([36354b5](https://github.com/donmahallem/turbo/commit/36354b53820b411c68d3acd3354046c10a712744))
+
 ## [3.1.1](https://github.com/donmahallem/turbo/compare/v3.1.0...v3.1.1) (2025-02-10)
 
 **Note:** Version bump only for package root
