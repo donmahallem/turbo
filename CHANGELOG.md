@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/donmahallem/turbo/compare/v3.0.1...v3.1.0) (2025-02-10)
+
+### Features
+
+- **deps:** express 5 ([#9](https://github.com/donmahallem/turbo/issues/9)) ([d55a989](https://github.com/donmahallem/turbo/commit/d55a9894ee605edba05e3867bdafbc17d5d11112))
+
 ## [3.0.1](https://github.com/donmahallem/turbo/compare/v3.0.0...v3.0.1) (2025-02-09)
 
 ### Bug Fixes
