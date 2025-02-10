@@ -58,13 +58,13 @@
         "@types/express": "5.0.0",
         "@types/supertest": "6.0.2",
         "esmock": "2.7.0",
-        "express": "4.21.2",
+        "express": "5.0.0",
         "protobufjs": "7.4.0",
         "supertest": "7.0.0"
     },
     "peerDependencies": {
         "axios": "^1.0.0",
-        "express": "^4.17.1",
+        "express": "^5.0.0",
         "protobufjs": "^7.0.0"
     },
     "dependencies": {
