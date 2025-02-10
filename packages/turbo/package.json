@@ -2,13 +2,13 @@
     "name": "@donmahallem/turbo",
     "version": "3.1.1",
     "description": "Turbo Helpers for express.js",
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/index.d.ts",
     "private": false,
+    "main": "./dist/index.js",
     "type": "module",
     "exports": {
-        "require": "./dist/cjs/index.cjs",
-        "import": "./dist/esm/index.mjs",
-        "default": "./dist/cjs/index.cjs"
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
     },
     "keywords": [
         "express",
@@ -16,9 +16,8 @@
     ],
     "typedocMain": "./src/index.ts",
     "scripts": {
-        "build": "rollup -c ./rollup.config.mjs && npm run build:types",
+        "build": "tsc -p tsconfig.lib.json",
         "build:readme": "npx @appnest/readme generate --input ../package_readme_blueprint.md --config readme_config.json",
-        "build:types": "tsc --project ./tsconfig.json  -d --declarationDir dist/types --declarationMap --emitDeclarationOnly",
         "test": "mocha --config ../../.mocharc.json",
         "test:coverage": "c8 --config ../../.nycrc.json npm run test",
         "lint": "eslint -c ./.eslintrc.mjs ./src",
