@@ -2,14 +2,13 @@
     "name": "@donmahallem/turbo-pb",
     "version": "3.1.1",
     "description": "Protobuf Helpers for express.js",
-    "main": "./dist/cjs/index.cjs",
-    "types": "./dist/types/index.d.ts",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "private": false,
     "type": "module",
     "exports": {
-        "require": "./dist/cjs/index.cjs",
-        "import": "./dist/esm/index.mjs",
-        "types": "./dist/types/index.d.ts"
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
     },
     "keywords": [
         "express",
@@ -17,7 +16,7 @@
     ],
     "typedocMain": "./src/index.ts",
     "scripts": {
-        "build": "rollup -c rollup.config.mjs",
+        "build": "tsc -p tsconfig.lib.json",
         "build:readme": "npx @appnest/readme generate --input ../package_readme_blueprint.md --config readme_config.json",
         "test": "mocha --config ../../.mocharc.json",
         "test:coverage": "c8 --config ../../.nycrc.json npm run test",
