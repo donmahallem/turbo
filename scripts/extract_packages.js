@@ -1,45 +1,47 @@
-const lernaProject = require('@lerna/project');
-
-const packages = lernaProject.Project.getPackagesSync('./');
-
+const { detectProjects } = require('lerna/utils');
+const fs = require('node:fs/promises');
+const path = require('node:path');
+const { exit } = require('node:process');
 const tempFileName = './temp_readme_config.json';
-function createTempFile() {
+async function createTempFile() {
+    const nodes = (await detectProjects()).projectGraph.nodes;
+    const packageNames = Object.keys(nodes);
     function createVersionLabel(packageName) {
         const encodedName = encodeURIComponent(packageName);
-        return `<a href="https://badge.fury.io/js/${encodedName}"><img alt="npm version" `
-            + `src="https://badge.fury.io/js/${encodedName}.svg" height="20"/></a>`;
+        return (
+            `<a href="https://badge.fury.io/js/${encodedName}"><img alt="npm version" ` +
+            `src="https://badge.fury.io/js/${encodedName}.svg" height="20"/></a>`
+        );
     }
-    const path = require('path');
-    const dataArray = [['Name', 'Description', 'Version']]
-        .concat(packages
-            .map((package) => {
-                const relativePath = package.get('homepage') ?
-                    package.get('homepage') :
-                    `https://github.com/manniwatch/manniwatch/tree/master/${path.relative(package.rootPath, package.location)}`;
-                const name = package.get('name');
-                const description = package.get('description');
-                const version = package.get('version');
-                return [
-                    `[${name}](${relativePath})`,
-                    description ? description : ' - ',
-                    version ? createVersionLabel(name) : ' - ',
-                ];
-            }));
+    const dataArray = [['Name', 'Description', 'Version']].concat(
+        packageNames.map((packageName) => {
+            const package = nodes[packageName].package;
+            const relativePath = package['homepage']
+                ? package['homepage']
+                : `https://github.com/donmahallem/turbo/tree/master/${path.relative(package.rootPath, package.location)}`;
+            const name = package.name;
+            const description = package.description;
+            const version = package.version;
+            return [`[${name}](${relativePath})`, description ? description : ' - ', version ? createVersionLabel(name) : ' - '];
+        })
+    );
+    console.log('dat', dataArray);
 
-    const fs = require('fs');
-
-    fs.writeFileSync(tempFileName, JSON.stringify({ toc_data: dataArray }));
-    console.log(`Created config for ${dataArray.length} Packages`)
+    await fs.writeFile(tempFileName, JSON.stringify({ toc_data: dataArray }));
+    console.log(`Created config for ${dataArray.length - 1} Packages`);
 }
 
-function deleteTempFile() {
-    const fs = require('fs');
-
-    fs.unlinkSync(tempFileName);
+async function deleteTempFile() {
+    await fs.unlinkSync(tempFileName);
     console.log(`Deleted temp file`);
 }
 if (process.argv[2] === 'clear') {
     deleteTempFile();
 } else {
-    createTempFile();
+    createTempFile()
+        .then(() => {
+            console.log('A');
+            exit();
+        })
+        .catch(console.error);
 }
