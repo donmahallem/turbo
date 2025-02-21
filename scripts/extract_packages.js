@@ -32,11 +32,16 @@ async function createTempFile() {
 }
 
 async function deleteTempFile() {
-    await fs.unlinkSync(tempFileName);
+    await fs.unlink(tempFileName);
     console.log(`Deleted temp file`);
 }
 if (process.argv[2] === 'clear') {
-    deleteTempFile();
+    deleteTempFile()
+        .then(() => {
+            console.log('A');
+            exit();
+        })
+        .catch(console.error);
 } else {
     createTempFile()
         .then(() => {
