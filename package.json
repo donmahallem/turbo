@@ -4,7 +4,6 @@
     "devDependencies": {
         "@appnest/readme": "1.2.7",
         "@donmahallem/eslint-config": "2.3.8",
-        "@donmahallem/lerna-fixer": "0.1.29",
         "@types/chai": "5.0.1",
         "@types/mocha": "10.0.10",
         "@types/node": "22.13.4",
@@ -38,7 +37,7 @@
         "lint": "lerna run lint",
         "docs": "typedoc --entryPointStrategy packages --out ./docs .",
         "lint:fix": "lerna run lint:fix",
-        "version": "npx @donmahallem/lerna-fixer lockfile fixversion && npm run build:readme && git add README.md",
+        "version": "npm run build:readme && git add README.md",
         "changelog": "node ./scripts/create_changelog.js",
         "create:release": "npx lerna version --create-release github --sign-git-tag --sign-git-commit"
     },
