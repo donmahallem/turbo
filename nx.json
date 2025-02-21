@@ -1,56 +1,10 @@
 {
-    "extends": "@nrwl/workspace/presets/core.json",
-    "npmScope": "@donmahallem",
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "@nrwl/workspace/tasks-runners/default",
-            "options": {
-                "cacheableOperations": ["build", "lint", "test", "e2e"]
-            }
-        }
+  "targetDefaults": {
+    "build": {
+      "cache": true
     },
-    "targetDependencies": {
-        "test": [
-            {
-                "target": "build",
-                "projects": "dependencies"
-            }
-        ],
-        "lint": [
-            {
-                "target": "build",
-                "projects": "dependencies"
-            }
-        ],
-        "docs": [
-            {
-                "target": "build",
-                "projects": "dependencies"
-            }
-        ],
-        "test:coverage": [
-            {
-                "target": "build",
-                "projects": "dependencies"
-            }
-        ],
-        "build": [
-            {
-                "target": "build",
-                "projects": "dependencies"
-            }
-        ],
-        "eslint": [
-            {
-                "target": "build",
-                "projects": "dependencies"
-            }
-        ],
-        "prettier": [
-            {
-                "target": "eslint",
-                "projects": "self"
-            }
-        ]
+    "test": {
+      "cache": true
     }
+  }
 }
