@@ -2,7 +2,6 @@
     "name": "root",
     "private": true,
     "devDependencies": {
-        "@appnest/readme": "1.2.7",
         "@donmahallem/eslint-config": "2.3.8",
         "@types/chai": "5.0.1",
         "@types/mocha": "10.0.10",
@@ -28,9 +27,7 @@
     },
     "scripts": {
         "build": "lerna run build",
-        "prebuild:readme": "node ./scripts/extract_packages.js",
-        "postbuild:readme": "node ./scripts/extract_packages.js clear",
-        "build:readme": "npx @appnest/readme generate --input readme_blueprint.md --config readme_config_root.json && lerna run build:readme",
+        "build:readme": "echo 'tbd'",
         "test": "lerna run test",
         "test:coverage": "lerna run test:coverage",
         "coverage:merge": "node ./scripts/merge_coverage.js",
