@@ -2,7 +2,7 @@
     "name": "root",
     "private": true,
     "devDependencies": {
-        "@donmahallem/eslint-config": "2.3.25",
+        "@donmahallem/eslint-config": "2.3.26",
         "@types/chai": "5.2.0",
         "@types/mocha": "10.0.10",
         "@types/node": "22.13.10",
