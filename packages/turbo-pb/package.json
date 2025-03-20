@@ -54,7 +54,7 @@
         "access": "public"
     },
     "devDependencies": {
-        "@types/express": "5.0.0",
+        "@types/express": "5.0.1",
         "@types/supertest": "6.0.2",
         "esmock": "2.7.0",
         "express": "5.0.1",
