@@ -57,7 +57,7 @@
         "@types/express": "5.0.1",
         "@types/supertest": "6.0.3",
         "esmock": "2.7.0",
-        "express": "5.0.1",
+        "express": "5.1.0",
         "protobufjs": "7.4.0",
         "supertest": "7.1.0"
     },
