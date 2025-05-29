@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.15](https://github.com/donmahallem/turbo/compare/v3.2.14...v3.2.15) (2025-05-29)
+
+### Bug Fixes
+
+- **deps:** update dependency npm to ^11.4.1 ([#181](https://github.com/donmahallem/turbo/issues/181)) ([994625a](https://github.com/donmahallem/turbo/commit/994625afd28baed036e92c0abfaf86e10d043815))
+
 ## [3.2.14](https://github.com/donmahallem/turbo/compare/v3.2.13...v3.2.14) (2025-05-17)
 
 ### Bug Fixes
