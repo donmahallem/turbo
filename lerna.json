@@ -1,6 +1,6 @@
 {
     "packages": ["packages/*"],
-    "version": "3.2.20",
+    "version": "3.2.21",
     "command": {
         "publish": {
             "message": "chore(release): publish %s"
