@@ -1,6 +1,6 @@
 {
     "name": "@donmahallem/turbo-validate-request",
-    "version": "3.2.21",
+    "version": "3.2.22",
     "description": "Turbo Helpers for express.js",
     "types": "./dist/index.d.ts",
     "private": false,
@@ -65,7 +65,7 @@
         "express": "^5.0.0"
     },
     "dependencies": {
-        "@donmahallem/turbo": "^3.2.21"
+        "@donmahallem/turbo": "^3.2.22"
     },
     "gitHead": "32bbb1804de7cfdeff74105981e5aed94b937652"
 }
