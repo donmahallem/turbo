@@ -90,9 +90,5 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/donmahallem/turbo.git"
-    },
-    "dependencies": {
-        "install": "^0.13.0",
-        "npm": "^11.5.2"
     }
 }
