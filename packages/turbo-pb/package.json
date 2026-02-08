@@ -42,7 +42,7 @@
         "url": "https://github.com/donmahallem/turbo.git"
     },
     "engines": {
-        "node": ">=20"
+        "node": ">=22"
     },
     "files": [
         "dist/*",
