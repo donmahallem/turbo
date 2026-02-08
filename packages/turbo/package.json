@@ -55,10 +55,10 @@
         "access": "public"
     },
     "devDependencies": {
-        "@types/express": "5.0.3",
+        "@types/express": "5.0.6",
         "@types/supertest": "6.0.3",
         "axios": "1.11.0",
-        "express": "5.1.0",
+        "express": "5.2.1",
         "supertest": "7.2.2"
     },
     "peerDependencies": {
