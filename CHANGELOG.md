@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.28](https://github.com/donmahallem/turbo/compare/v3.2.27...v3.2.28) (2026-02-09)
+
+**Note:** Version bump only for package root
+
 ## [3.2.27](https://github.com/donmahallem/turbo/compare/v3.2.26...v3.2.27) (2026-02-08)
 
 **Note:** Version bump only for package root
