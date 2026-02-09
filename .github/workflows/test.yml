@@ -26,7 +26,7 @@ jobs:
             - name: Run Build
               run: npx lerna run build
             - name: Archive production artifacts
-              uses: actions/upload-artifact@v4.6.2
+              uses: actions/upload-artifact@v6.0.0
               with:
                   name: build-${{matrix.os}}-${{matrix.node}}
                   path: |
@@ -55,7 +55,7 @@ jobs:
               run: |
                   npm ci --foreground-scripts
             - name: Download Build artifacts
-              uses: actions/download-artifact@v5.0.0
+              uses: actions/download-artifact@v6.0.0
               with:
                   name: build-${{matrix.os}}-${{matrix.node}}
                   path: ./packages
@@ -99,7 +99,7 @@ jobs:
               run: |
                   npm ci --foreground-scripts
             - name: Download Build artifacts
-              uses: actions/download-artifact@v5.0.0
+              uses: actions/download-artifact@v6.0.0
               with:
                   name: build-${{matrix.os}}-${{matrix.node}}
                   path: ./packages
@@ -136,7 +136,7 @@ jobs:
                   npm install -g npm@${{env.TEST_NPM_VERSION}}
                   npm ci --foreground-scripts
             - name: Download Build artifacts
-              uses: actions/download-artifact@v5.0.0
+              uses: actions/download-artifact@v6.0.0
               with:
                   name: build-${{matrix.os}}-${{matrix.node}}
                   path: ./packages
