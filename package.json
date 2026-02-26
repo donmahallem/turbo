@@ -5,7 +5,7 @@
         "@donmahallem/eslint-config": "2.3.254",
         "@types/chai": "5.2.3",
         "@types/mocha": "10.0.10",
-        "@types/node": "24.10.13",
+        "@types/node": "24.10.14",
         "@types/sinon": "21.0.0",
         "c8": "11.0.0",
         "chai": "6.2.2",
